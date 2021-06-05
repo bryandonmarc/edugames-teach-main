@@ -81,6 +81,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Login from '~/components/Auth/Login'
 import Signup from '~/components/Auth/Signup'
 
@@ -99,9 +100,6 @@ export default {
   middleware({ app, redirect, params, error }) {
     if (!['login', 'signup'].includes(params.auth))
       return error({ statusCode: 404, message: 'Invalid page' })
-    if (app.$fire.auth.currentUser) {
-      return redirect('/home')
-    }
   },
   data() {
     return {
@@ -112,9 +110,23 @@ export default {
       rightpanelactive: false,
     }
   },
+  computed: {
+    ...mapGetters('login', ['getAuthUser']),
+  },
   mounted() {
     if (this.$route.params.auth === 'signup') {
       this.rightpanelactive = true
+    }
+    if (this.$fire.auth.currentUser) {
+      if (this.getAuthUser.photoURL === 'teacher') {
+        this.$nextTick(() => {
+          this.$router.push({ name: 'home' })
+        })
+      } else if (this.getAuthUser.photoURL === 'student') {
+        this.$nextTick(() => {
+          this.$router.push({ name: 'student' })
+        })
+      }
     }
   },
 }

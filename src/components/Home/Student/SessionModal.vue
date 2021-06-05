@@ -2,7 +2,7 @@
   <!-- overlay -->
   <div
     id="modal_overlay"
-    class="absolute inset-0 items-start justify-center w-full h-screen pt-10 bg-black bg-opacity-30 md:items-center md:pt-0"
+    class="absolute inset-0 z-50 items-start justify-center w-full h-screen pt-10 bg-black bg-opacity-30 md:items-center md:pt-0"
     :class="[toggle ? 'flex' : 'hidden']"
   >
     <!-- modal -->
@@ -28,56 +28,59 @@
         <!-- body -->
         <div class="w-full p-3 mb-20">
           <div
-            class="p-6 bg-white rounded-md shadow md:grid md:grid-cols-3 md:gap-6"
+            class="p-6 bg-white rounded-md shadow md:grid md:grid-cols-4 md:gap-6"
           >
-            <div class="md:col-span-1">
+            <div class="md:col-span-2">
               <div class="px-4 sm:px-0">
                 <h3 class="text-lg font-medium text-gray-900">Search Class</h3>
                 <p class="mt-1 text-sm text-gray-600">
                   Search for a class using the code your teacher has given you!
                 </p>
               </div>
+              <div class="mt-6">
+                <label
+                  class="block text-sm font-medium text-gray-700"
+                  for="topic"
+                >
+                  <span>Classroom Code</span>
+                </label>
+                <div class="flex">
+                  <FormulateInput
+                    v-model="sessionId"
+                    name="sessionId"
+                    type="text"
+                    validation="required:trim"
+                    input-class="session-code"
+                  />
+                  <a
+                    class="p-3 px-8 font-bold text-white uppercase bg-purple-500 rounded-r-lg focus:outline-none active:outline-none"
+                    @click="search"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-6 h-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
             </div>
             <div class="mt-5 md:mt-0 md:col-span-2">
               <div class="px-4 py-5">
-                <div class="grid grid-cols-6 gap-6">
-                  <div class="col-span-6 sm:col-span-4">
-                    <label
-                      class="block text-sm font-medium text-gray-700"
-                      for="topic"
-                    >
-                      <span>Classroom Code</span>
-                    </label>
-                    <div class="flex">
-                      <FormulateInput
-                        v-model="sessionId"
-                        name="sessionId"
-                        type="text"
-                        validation="required:trim"
-                        input-class="session-code"
-                      />
-                      <a
-                        class="p-3 px-8 font-bold text-white uppercase bg-purple-500 rounded-r-lg focus:outline-none active:outline-none"
-                        @click="search"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="w-6 h-6"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                          />
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                <ClassCard
+                  class="col-span-6 p-4 transition duration-300 ease-in-out delay-150 scale-110 bg-purple-100 border-2 border-purple-600 rounded-lg cursor-pointer md:col-span-3 ring-2 ring-purple-400 transform-gpu"
+                  :session="session"
+                  :img-url="session.imgUrl"
+                />
               </div>
             </div>
           </div>
@@ -134,7 +137,7 @@
               </div>
             </div>
           </div> -->
-          <div class="block">
+          <!-- <div class="block">
             <div class="py-8"><div class="border-t border-gray-200"></div></div>
           </div>
           <div
@@ -161,7 +164,7 @@
                 </ul>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <!-- footer -->

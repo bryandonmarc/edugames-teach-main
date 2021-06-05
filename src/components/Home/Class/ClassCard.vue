@@ -67,7 +67,6 @@ export default {
         return {
           className: 'CS520-1L B43',
           date: new Date(),
-          sessionCode: 'pierre-1143',
           topic: 'SOFTWARE ENGINEERING TEST TEST 1-Section B43',
           imgUrl: `https://picsum.photos/400/160`,
         }
@@ -107,26 +106,28 @@ export default {
       this.$emit('click', this.seedData)
     },
     copyToClipboard() {
-      const el = document.createElement('textarea')
-      el.value = this.session.sessionCode
-      el.setAttribute('readonly', '')
-      el.style.position = 'absolute'
-      el.style.left = '-9999px'
-      document.body.appendChild(el)
-      const selected =
-        document.getSelection().rangeCount > 0
-          ? document.getSelection().getRangeAt(0)
-          : false
-      el.select()
-      document.execCommand('copy')
-      document.body.removeChild(el)
-      if (selected) {
-        document.getSelection().removeAllRanges()
-        document.getSelection().addRange(selected)
+      if (this.session.id) {
+        const el = document.createElement('textarea')
+        el.value = this.session.id
+        el.setAttribute('readonly', '')
+        el.style.position = 'absolute'
+        el.style.left = '-9999px'
+        document.body.appendChild(el)
+        const selected =
+          document.getSelection().rangeCount > 0
+            ? document.getSelection().getRangeAt(0)
+            : false
+        el.select()
+        document.execCommand('copy')
+        document.body.removeChild(el)
+        if (selected) {
+          document.getSelection().removeAllRanges()
+          document.getSelection().addRange(selected)
+        }
+        this.$toast.info(
+          `Classroom code&nbsp;<u>${this.session.id}</u>&nbsp;copied to clipboard!`
+        )
       }
-      this.$toast.info(
-        `Classroom code&nbsp;<u>${this.session.id}</u>&nbsp;copied to clipboard!`
-      )
     },
   },
 }

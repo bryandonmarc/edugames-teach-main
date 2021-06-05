@@ -105,6 +105,12 @@ export default {
     if (!app.$fire.auth.currentUser) {
       return redirect('/')
     }
+    if (
+      app.$fire.auth.currentUser &&
+      app.$fire.auth.currentUser.photoURL === 'student'
+    ) {
+      return redirect('/student')
+    }
   },
   data() {
     return {

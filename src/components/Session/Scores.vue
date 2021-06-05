@@ -25,13 +25,14 @@
         </div>
 
         <!-- component -->
-        <!-- <div class="relative mb-3 text-gray-600">
+        <div class="relative mb-3 text-gray-600">
           <div class="flex flex-row">
             <input
               type="search"
               name="search"
               placeholder="Search"
               class="h-10 px-5 pr-10 bg-white rounded-full focus:outline-none"
+              v-model="searchName"
             />
           </div>
 
@@ -55,7 +56,7 @@
               />
             </svg>
           </button>
-        </div> -->
+        </div>
       </div>
 
       <div class="w-full px-2 lg:w-5/6">
@@ -82,9 +83,7 @@
                 "
               >
                 <tr
-                  v-for="score in getScoresGrouped.filter(
-                    (score) => score.activityID == searchItem
-                  )"
+                  v-for="score in filteredResults()"
                   :key="score.studentID"
                   class="border-b border-gray-200 hover:bg-gray-100"
                 >
@@ -221,6 +220,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data() {
     return {
+      searchName: '',
       searchItem: '',
       items: [],
       filteredItems: [],
@@ -269,6 +269,20 @@ export default {
     },
     getStudentMethod(id) {
       return this.getStudentById(id)['display-name']
+    },
+    filteredResults() {
+      const results = this.getScoresGrouped.filter(
+        (score) => score.activityID === this.searchItem
+      )
+      if (this.searchName) {
+        return results.filter((score) =>
+          this.getStudentMethod(score.studentID)
+            .toLowerCase()
+            .includes(this.searchName.toLowerCase())
+        )
+      } else {
+        return results
+      }
     },
   },
 }

@@ -102,7 +102,10 @@
               </PercentProgressCircle>
             </div>
           </div>
-          <div class="inline-block px-3 mb-2">
+          <div
+            class="inline-block px-3 mb-2"
+            v-if="getAuthUser.photoURL === 'teacher'"
+          >
             <div
               class="p-4 transition-shadow duration-300 ease-in-out rounded-lg shadow-md bg-gray-50"
             >
@@ -260,48 +263,52 @@ export default {
       this.$toast.info('This feature is coming soon!')
     },
     copyToClipboard() {
-      const el = document.createElement('textarea')
-      el.value = this.id
-      el.setAttribute('readonly', '')
-      el.style.position = 'absolute'
-      el.style.left = '-9999px'
-      document.body.appendChild(el)
-      const selected =
-        document.getSelection().rangeCount > 0
-          ? document.getSelection().getRangeAt(0)
-          : false
-      el.select()
-      document.execCommand('copy')
-      document.body.removeChild(el)
-      if (selected) {
-        document.getSelection().removeAllRanges()
-        document.getSelection().addRange(selected)
+      if (this.id !== 'pierre-1433') {
+        const el = document.createElement('textarea')
+        el.value = this.id
+        el.setAttribute('readonly', '')
+        el.style.position = 'absolute'
+        el.style.left = '-9999px'
+        document.body.appendChild(el)
+        const selected =
+          document.getSelection().rangeCount > 0
+            ? document.getSelection().getRangeAt(0)
+            : false
+        el.select()
+        document.execCommand('copy')
+        document.body.removeChild(el)
+        if (selected) {
+          document.getSelection().removeAllRanges()
+          document.getSelection().addRange(selected)
+        }
+        this.$toast.info(
+          `Activity code&nbsp;<u>${this.id}</u>&nbsp;copied to clipboard!`
+        )
       }
-      this.$toast.info(
-        `Activity code&nbsp;<u>${this.id}</u>&nbsp;copied to clipboard!`
-      )
     },
     copyToClipboardSession() {
-      const el = document.createElement('textarea')
-      el.value = this.classCode
-      el.setAttribute('readonly', '')
-      el.style.position = 'absolute'
-      el.style.left = '-9999px'
-      document.body.appendChild(el)
-      const selected =
-        document.getSelection().rangeCount > 0
-          ? document.getSelection().getRangeAt(0)
-          : false
-      el.select()
-      document.execCommand('copy')
-      document.body.removeChild(el)
-      if (selected) {
-        document.getSelection().removeAllRanges()
-        document.getSelection().addRange(selected)
+      if (this.classCode) {
+        const el = document.createElement('textarea')
+        el.value = this.classCode
+        el.setAttribute('readonly', '')
+        el.style.position = 'absolute'
+        el.style.left = '-9999px'
+        document.body.appendChild(el)
+        const selected =
+          document.getSelection().rangeCount > 0
+            ? document.getSelection().getRangeAt(0)
+            : false
+        el.select()
+        document.execCommand('copy')
+        document.body.removeChild(el)
+        if (selected) {
+          document.getSelection().removeAllRanges()
+          document.getSelection().addRange(selected)
+        }
+        this.$toast.info(
+          `Classroom code&nbsp;<u>${this.classCode}</u>&nbsp;copied to clipboard!`
+        )
       }
-      this.$toast.info(
-        `Classroom code&nbsp;<u>${this.classCode}</u>&nbsp;copied to clipboard!`
-      )
     },
   },
 }

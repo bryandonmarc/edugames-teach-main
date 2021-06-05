@@ -37,8 +37,8 @@
           <!-- List -->
           <ul
             v-if="getActivities.length"
-            class="py-4 space-y-4 overflow-y-auto hide-scroll-bar"
-            style="max-height: 60vh"
+            class="py-4 space-y-4 overflow-y-auto"
+            style="max-height: 72vh"
           >
             <ActivityCard
               v-for="(activity, index) in getActivities

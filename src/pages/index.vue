@@ -13,13 +13,13 @@
             <nav class="flex items-center text-lg text-black">
               <nuxt-link
                 to="login"
-                class="flex px-6 py-2 hover:text-purple-500"
+                class="flex px-6 py-2 mr-2 border border-purple-600 rounded-full hover:text-purple-600"
               >
                 Login
               </nuxt-link>
               <nuxt-link
                 to="signup"
-                class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-indigo-500 rounded-full shadow outline-none active:bg-indigo-600 hover:shadow-lg focus:outline-none"
+                class="hidden px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-indigo-500 rounded-full shadow outline-none md:flex active:bg-indigo-600 hover:shadow-lg focus:outline-none"
                 style="transition: all 0.15s ease"
               >
                 Register
@@ -109,26 +109,27 @@
           </div>
         </div>
       </div>
-      <!-- <div class="flex flex-col sm:px-12 sm:flex-row">
+      <div class="flex flex-col sm:px-12 sm:flex-row">
         <div class="sm:w-1/2 sm:pr-16">
-          <img src="http://placehold.it/552x300" class="rounded-lg" />
+          <img src="~/assets/img/monster-question.png" class="rounded-lg" />
         </div>
         <div class="pt-4 sm:w-1/2">
           <h3 class="mb-4 text-2xl text-gray-800">
             A fun educational mobile game!
           </h3>
           <p class="mb-4 text-lg leading-relaxed text-gray-600">
-            Monster Question is casual mobile game companion to eduGames Teach
-            that merits engaging educational achievement by letting students
-            answer activities as a fun and interesting game!
+            Monster Question is an educational mobile game companion to eduGames
+            Teach that merits learner achievement by letting students answer
+            activities as a fun and interesting game!
           </p>
-          <button
+          <a
+            href="https://drive.google.com/uc?export=download&id=1IAtV4pWvaZ2Ae7aSrfcNmdduiLvN5vAv"
             class="px-8 py-2 mx-auto text-white bg-purple-600 rounded shadow-lg hover:bg-purple-500"
           >
             Download Now!
-          </button>
+          </a>
         </div>
-      </div> -->
+      </div>
     </div>
     <!-- <div class="py-20 bg-gray-100">
       <div class="container flex flex-col items-center px-6 mx-auto">
@@ -148,7 +149,7 @@
     </div> -->
     <footer class="pt-16 bg-gray-800">
       <div class="container px-6 mx-auto">
-        <!-- <div class="flex flex-col items-center justify-end sm:flex-row">
+        <div class="flex flex-col items-center justify-end sm:flex-row">
           <div class="sm:w-2/3">
             <h4
               class="text-3xl leading-tight text-center text-white sm:text-left"
@@ -160,12 +161,13 @@
           </div>
           <div class="flex justify-end mt-12 sm:w-1/3 sm:mt-0">
             <a
+              href="mailto:zek.yuuki@gmail.com?subject=My inquiries about eduGames Teach/Monster Question"
               class="px-8 py-3 text-xl text-white bg-purple-600 rounded shadow-lg hover:bg-purple-500"
             >
               Contact us
             </a>
           </div>
-        </div> -->
+        </div>
         <div
           class="flex justify-center py-10 mt-16 mb-8 border-t border-gray-700 sm:justify-end"
         >
@@ -186,8 +188,8 @@ export default {
   methods: {
     ...mapActions('login', ['logOut']),
   },
-  mounted() {
-    if (this.$fire.auth.currentUser) this.logOut()
-  },
+  // mounted() {
+  //   if (this.$fire.auth.currentUser) this.logOut()
+  // },
 }
 </script>
